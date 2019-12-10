@@ -54,7 +54,7 @@ public class ItemsController
         return "items/items_detail";
     }
 
-    @PostMapping(value = "/items/filter/")
+    @RequestMapping(value = "/items/search/")
     public String showFilteringItemByName(Model model, @RequestParam("productName") String productName)
     {
         List<Item> items = itemService.findFilteredByName(productName);
