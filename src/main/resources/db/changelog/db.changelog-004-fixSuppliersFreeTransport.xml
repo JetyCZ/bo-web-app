@@ -1,0 +1,31 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="Pavel Jetensky" id="16">
+        <update tableName="suppliers">
+            <column name="free_transport" value="5750"/>
+            <column name="email" value="orisek@orisek.cz"/>
+            <where>name='Oříšek s.r.o.'</where>
+        </update>
+        <update tableName="suppliers">
+            <column name="free_transport" value="2500"/>
+            <where>name='Country life'</where>
+        </update>
+        <update tableName="suppliers">
+            <column name="free_transport" value="1000"/>
+            <where>name='PROBIO'</where>
+        </update>
+        <update tableName="suppliers">
+            <column name="free_transport" value="3000"/>
+            <where>name='bio nebio'</where>
+        </update>
+        <update tableName="suppliers">
+            <column name="free_transport" value="5000"/>
+            <where>name='K-Servis'</where>
+        </update>
+    </changeSet>
+
+</databaseChangeLog>

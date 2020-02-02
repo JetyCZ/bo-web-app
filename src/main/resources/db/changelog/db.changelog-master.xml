@@ -11,6 +11,7 @@
     <include file="db.changelog-001-addSuppliers.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-002-addSuppliersFreeTransport.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-003.xml" relativeToChangelogFile="true"/>
+    <include file="db.changelog-004-fixSuppliersFreeTransport.xml" relativeToChangelogFile="true"/>
     <!--
     TODO
     AND plus %XXX% all search keywords
