@@ -1,6 +1,9 @@
 package cz.upce.webapp.utils.xlsprocessors;
 
 import cz.upce.webapp.dao.stock.model.Item;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -16,6 +19,7 @@ import java.util.regex.Pattern;
 public class BionebioSheetProcessor extends AbstractSheetProcessor
 {
     public static final Double EUR_TO_CZK = new Double(26);
+    private static final Logger log = LoggerFactory.getLogger(BionebioSheetProcessor.class);
 
     @Override
     public String getSheetName() {
@@ -51,16 +55,24 @@ public class BionebioSheetProcessor extends AbstractSheetProcessor
                     String itemQuantityStr = matcher.group("weight");
                     itemQuantityStr = itemQuantityStr.replaceFirst("\\,","\\.");
                     double itemQuantity = Double.parseDouble(itemQuantityStr)*1000;
-                    double itemPrice;
+                    Double itemPrice = null;
                     if (values[2].length()>0) {
                         itemPrice = Double.parseDouble(values[2])/1000;
                     } else {
-                        double eurValue = Double.parseDouble(values[3]);
-                        Double eurToCzk = parsedEurValue==null?EUR_TO_CZK:parsedEurValue;
-                        itemPrice = eurValue * eurToCzk;
+                        String eurColumnValue = values[3];
+                        if (!StringUtils.isEmpty(eurColumnValue)) {
+                            double eurValue = Double.parseDouble(eurColumnValue);
+                            Double eurToCzk = parsedEurValue==null?EUR_TO_CZK:parsedEurValue;
+                            itemPrice = eurValue * eurToCzk;
+                        } else {
+                            log.warn("No price for: " + itemNameToUse);
+                        }
                     }
                     int itemTax = 15;
-                    itemsList.add(new Item(itemNameToUse, itemQuantity, itemPrice, itemTax, null));
+
+                    if (itemPrice!=null) {
+                        itemsList.add(new Item(itemNameToUse, itemQuantity, itemPrice, itemTax, null));
+                    }
                 }
 
             }
