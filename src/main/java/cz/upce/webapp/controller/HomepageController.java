@@ -19,6 +19,6 @@ public class HomepageController
     @GetMapping("/")
     public String getHomepage(Model model)
     {
-        return "redirect:/items";
+        return "redirect:/items/1";
     }
 }

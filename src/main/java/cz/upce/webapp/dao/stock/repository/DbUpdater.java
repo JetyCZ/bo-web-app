@@ -20,6 +20,7 @@ public class DbUpdater implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        System.out.println("======== Starting DB UPDATE ===========");
         update(1, () -> {
             /*
             Karel Rohrer
@@ -43,7 +44,9 @@ public class DbUpdater implements InitializingBean {
     }
 
     private void update(int updateId, Runnable runnable) {
-        if (!dbVersionRepository.findById(updateId).isPresent()) {
+        boolean present = dbVersionRepository.findById(updateId).isPresent();
+        System.out.println("Checking for existence of db version:" + updateId + ", "+present);
+        if (!present) {
             runnable.run();
             dbVersionRepository.save(new DbVersion(updateId));
         }
