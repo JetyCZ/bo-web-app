@@ -33,13 +33,13 @@ public class DbUpdater implements InitializingBean {
             rohrer@mkmpack.cz
             www.mkmpack.cz
             www.iplody.cz */
-            Supplier s = new Supplier();
-            s.setId(6);
-            s.setName("MKM Pack");
-            s.setEmail("rohrer@mkmpack.cz");
-            // If less then 45kg
-            s.transportCost = 139.15;
-            supplierRepository.save(s);
+                Supplier s = new Supplier();
+                s.setId(6);
+                s.setName("MKM Pack");
+                s.setEmail("rohrer@mkmpack.cz");
+                // If less then 45kg
+                s.transportCost = 139.15;
+                supplierRepository.save(s);
         });
     }
 

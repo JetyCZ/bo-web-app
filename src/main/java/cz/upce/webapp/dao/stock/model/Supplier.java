@@ -19,7 +19,6 @@ public class Supplier implements Serializable
 
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(insertable=true, updatable=true, unique=true, nullable=false)
     private Integer id;
 
