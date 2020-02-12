@@ -14,8 +14,9 @@ import java.util.Objects;
 @Entity
 public class DbVersion
 {
-    @Column
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(insertable=true, updatable=true, unique=true, nullable=false)
     public Integer appliedUpdateId;
 
     public DbVersion() {
