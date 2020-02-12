@@ -16,6 +16,8 @@ import javax.persistence.*;
 @Transactional
 public class Supplier implements Serializable
 {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true, updatable = false)
@@ -35,6 +37,12 @@ public class Supplier implements Serializable
 
     @Column
     private String pricelistName;
+
+    @Column(nullable = true)
+    /**
+     * Fixed cost of transport
+     */
+    public Double transportCost = 0D;
 
     public Integer getId()
     {
