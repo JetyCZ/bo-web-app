@@ -5,7 +5,7 @@ import cz.upce.webapp.dao.stock.model.Supplier
 import cz.upce.webapp.dao.stock.repository.SupplierRepository
 import spock.lang.Specification
 
-class CountryLifeProcessorTest extends AbstractSheetProcessorTest {
+class CountryLifeSheetProcessorTest extends AbstractSheetProcessorTest {
 
     SupplierRepository supplierRepo = Mock()
 

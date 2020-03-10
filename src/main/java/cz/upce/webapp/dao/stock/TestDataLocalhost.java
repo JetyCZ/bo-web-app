@@ -29,7 +29,7 @@ public class TestDataLocalhost implements InitializingBean {
             item.setItemPrice (0.0305);
             item.setItemTax (15);
             item.setSupplier (supplier);
-            item.setRowIdx (5);
+            item.setRowNum(5);
             itemRepository.save(item);
         }
     }

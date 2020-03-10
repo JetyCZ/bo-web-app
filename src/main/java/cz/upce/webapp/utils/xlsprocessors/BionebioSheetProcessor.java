@@ -36,7 +36,7 @@ public class BionebioSheetProcessor extends AbstractSheetProcessor
     Double parsedEurValue = null;
 
     @Override
-    public List<Item> disintegrateIntoItem(int rowIdx, List<String> sheetData) {
+    public List<Item> disintegrateIntoItem(int rowNum, List<String> sheetData) {
         List<Item> itemsList = new ArrayList<>();
 
         //split values from list to array
@@ -44,7 +44,7 @@ public class BionebioSheetProcessor extends AbstractSheetProcessor
 
 
         if (values.length>=4) {
-            if (rowIdx==3 && values.length>=4) {
+            if (rowNum ==2 && values.length>=4) {
                 parsedEurValue = Double.parseDouble(values[3]);
             }
             String itemName = values[1].trim();

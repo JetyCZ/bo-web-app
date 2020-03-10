@@ -25,7 +25,7 @@ public class ProbioSheetProcessor extends AbstractSheetProcessor
     }
 
     @Override
-    public List<Item> disintegrateIntoItem(int rowIdx, List<String> sheetData) {
+    public List<Item> disintegrateIntoItem(int rowNum, List<String> sheetData) {
         List<Item> itemsList = new ArrayList<>();
         //split values from list to array
         String[] values = sheetData.toArray(new String[0]);

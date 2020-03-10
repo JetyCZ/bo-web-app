@@ -35,10 +35,10 @@ public class CountrySheetProcessor extends AbstractSheetProcessor
     }
 
     @Override
-    public List<Item> disintegrateIntoItem(int rowIdx, List<String> rowData) {
+    public List<Item> disintegrateIntoItem(int rowNum, List<String> rowData) {
         List<Item> items = new ArrayList<>();
         //Iterate through all rows
-            if (isRowOmitted(rowIdx)) return items;
+            if (isRowOmitted(rowNum)) return items;
 
             if (!rowData.get(1).isEmpty())
             {

@@ -23,7 +23,7 @@ public abstract class AbstractSheetProcessor implements ISheetProcessor {
 
 
     @Override
-    abstract public List<Item> disintegrateIntoItem(int rowIdx, List<String> rowData);
+    abstract public List<Item> disintegrateIntoItem(int rowNum, List<String> rowData);
 
     @Override
     public int getOrderColumnIdx() {

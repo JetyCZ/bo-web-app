@@ -24,10 +24,12 @@ abstract class AbstractSheetProcessorTest extends Specification{
         }
 
         Workbook workbook = processor.fillOrder(new File(f), orderedItems)
-        def outputFilePath = System.getProperty("user.dir") + filePath
+        def outputFilePath = System.getProperty("user.dir") + "/target"+ filePath
+        org.apache.commons.io.FileUtils.forceMkdir(new File(outputFilePath).getParentFile())
         def outputStream = new FileOutputStream(outputFilePath)
         workbook.write(outputStream)
         outputStream.close()
+
         sheetRead = processor.getProductsSheetFromWorkbook(new File(outputFilePath))
         sheetRead
     }

@@ -3,6 +3,7 @@ package cz.upce.webapp.utils.xlsprocessors
 
 import cz.upce.webapp.dao.stock.model.Supplier
 import cz.upce.webapp.dao.stock.repository.SupplierRepository
+import org.apache.poi.ss.usermodel.Workbook
 
 class MKMPackSheetProcessorTest extends AbstractSheetProcessorTest {
 
@@ -38,14 +39,13 @@ class MKMPackSheetProcessorTest extends AbstractSheetProcessorTest {
 
     def "Make Order"() {
         given:
-        def processor = new NutSheetProcessor(supplierRepository: supplierRepo)
-        def workbook = processor
+        def processor = new MkmPackSheetProcessor(supplierRepository: supplierRepo)
         def sheetRead = fillWriteAndReadSheet(processor)
-        def sheetWithOrder = sheetRead.getWorkbook().getSheet("Objednávka")
+        def workbook = sheetRead.getWorkbook()
 
         expect:
-        sheetWithOrder.getRow(3).getCell(5).getNumericCellValue() == 3
-        sheetWithOrder.getRow(46).getCell(5).getNumericCellValue() == 1
+        processor.getOrderedQuantity(workbook, 9) == 3
+        processor.getOrderedQuantity(workbook, 12) == 1
 
     }
 }

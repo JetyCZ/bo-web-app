@@ -39,22 +39,20 @@ public interface ISheetProcessor
 
         Supplier supplier = supplier();
         //Iterate through all rows
-        int rowIdx = 0;
         while (rowIterator.hasNext())
         {
-            rowIdx++;
             row = rowIterator.next();
 
             List<String> rowData = new ArrayList<>();
             parseRow(row, formulaEvaluator, rowData);
 
             if (!rowData.isEmpty()) {
-                List<Item> itemList = disintegrateIntoItem(rowIdx, rowData);
+                List<Item> itemList = disintegrateIntoItem(row.getRowNum(), rowData);
                 for (Item item : itemList) {
                     if (item!=null) {
                         item.setSupplier(supplier);
                         allItems.add(item);
-                        item.setRowIdx(rowIdx-1);
+                        item.setRowNum(row.getRowNum());
                     }
                 }
             }
@@ -64,7 +62,7 @@ public interface ISheetProcessor
 
     Supplier supplier();
 
-    List<Item> disintegrateIntoItem(int rowIdx, List<String> rowData);
+    List<Item> disintegrateIntoItem(int rowNum, List<String> rowData);
 
     default void importItemsFromFile(MultipartFile fileName, String filePath, ItemRepository itemRepository) throws IOException
     {
@@ -112,8 +110,14 @@ public interface ISheetProcessor
     }
 
     default void setOrderQuantityForItem(Sheet orderSheet, Item item, Integer orderQuantity) {
-        Row row = orderSheet.getRow(item.getRowIdx());
+        Row row = orderSheet.getRow(item.getRowNum());
         row.createCell(getOrderColumnIdx()).setCellValue(orderQuantity);
+    }
+    default double getOrderedQuantity(Workbook workbook, int rowNum) {
+        return getOrderSheetFromWorkbook(workbook)
+                .getRow(rowNum)
+                .getCell(getOrderColumnIdx())
+                .getNumericCellValue();
     }
 
     int getOrderColumnIdx();

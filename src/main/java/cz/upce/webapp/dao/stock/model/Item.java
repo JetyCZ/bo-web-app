@@ -44,7 +44,7 @@ public class Item implements Serializable, Comparable<Item>
     @ManyToOne(cascade = CascadeType.MERGE, optional = false)
     private Supplier supplier;
     @Column
-    private Integer rowIdx;
+    private Integer rowNum;
 
     public Item() {
     }
@@ -157,17 +157,20 @@ public class Item implements Serializable, Comparable<Item>
                 '}';
     }
 
-    public Integer getRowIdx() {
-        return rowIdx;
+    /**
+     * Excel row 1 = rowNum 0
+     */
+    public Integer getRowNum() {
+        return rowNum;
     }
 
-    public void setRowIdx(Integer rowIdx) {
-        this.rowIdx = rowIdx;
+    public void setRowNum(Integer rowNum) {
+        this.rowNum = rowNum;
     }
 
     @Override
     public int compareTo(Item o) {
-        return o.getRowIdx().compareTo(this.getRowIdx());
+        return o.getRowNum().compareTo(this.getRowNum());
     }
 
     public boolean isBio() {

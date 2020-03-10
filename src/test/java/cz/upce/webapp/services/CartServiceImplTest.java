@@ -9,10 +9,7 @@ import cz.upce.webapp.service.OrderFormServiceImpl;
 import cz.upce.webapp.service.OrderedProductServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import cz.upce.webapp.service.CartServiceImpl;
-
-import java.util.Map;
 
 /**
  * @author Tomas Kodym
@@ -35,8 +32,8 @@ public class CartServiceImplTest {
     public void setUp() {
         item.setItemId(1);
         item1.setItemId(2);
-        item.setRowIdx(1);
-        item1.setRowIdx(1);
+        item.setRowNum(1);
+        item1.setRowNum(1);
         orisek.setId(1);
         county.setId(2);
         orisek.setName("Orisek");

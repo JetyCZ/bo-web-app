@@ -3,7 +3,6 @@ package cz.upce.webapp.utils.xlsprocessors
 
 import cz.upce.webapp.dao.stock.model.Supplier
 import cz.upce.webapp.dao.stock.repository.SupplierRepository
-import spock.lang.Specification
 
 class KServisSheetProcessorTest extends AbstractSheetProcessorTest {
 
@@ -11,7 +10,7 @@ class KServisSheetProcessorTest extends AbstractSheetProcessorTest {
 
     @Override
     protected String getPricelistResourcePath() {
-        return  "/k-servis_cenik_listopad.xlsx"
+        return  "/k-servis/k-servis_cenik_brezen_2020.xlsx"
     }
 
     def "IterateSheetValues"() {
@@ -25,21 +24,23 @@ class KServisSheetProcessorTest extends AbstractSheetProcessorTest {
         items.size() > 0
         def itemPara = items["Para ořechy_20000"]
         itemPara.itemTax == 15
-        itemPara.itemPrice == 0.229
-        itemPara.rowIdx == 144
+        itemPara.itemPrice == 0.198
+        itemPara.rowNum == 149
 
 
         def item1 = items["Aloe Vera plátky_20000"]
         item1.itemTax == 15
         item1.itemPrice == 0.204
+        item1.rowNum == 1
 
         def item2 = items["Zelený meloun plátky_20000"]
         item2.itemTax == 15
         item2.itemPrice == 0.159
 
-        def item3 = items["Ananas kousky_1000"]
+        def item3 = items["Konopné semínko loupané_10000"]
         item3.itemTax == 15
-        item3.itemPrice == 0.715
+        item3.itemPrice == 0.189
+        item3.rowNum == 394
 
         def item4 = items["Zahrádka (směs ovoce)_12000"]
         item4.itemTax == 15
@@ -55,7 +56,7 @@ class KServisSheetProcessorTest extends AbstractSheetProcessorTest {
         expect:
         sheetRead.getRow(1).getCell(5).getNumericCellValue() == 3
         sheetRead.getRow(4).getCell(5).getNumericCellValue() == 1
-        sheetRead.getRow(144).getCell(5).getNumericCellValue() == 1
+        sheetRead.getRow(142).getCell(5).getNumericCellValue() == 1
         sheetRead.getRow(0).getCell(5).getStringCellValue() == "Objednávám tolik balení"
 
     }

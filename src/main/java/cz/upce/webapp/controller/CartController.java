@@ -75,7 +75,7 @@ public class CartController
         if (addUserToModel(model).equals("info@pardubicebezobalu.cz")) {
             message = "Dobrý den, v příloze zasílám novou objednávku.\n" +
                     "\n" +
-                    "Doručte prosím na následující adresu v Po-Pá 15:00-18:30\n" +
+                    "Doručte prosím na následující adresu v Po-Čt 15:00-17:30\n" +
                     "\n" +
                     "Krámek Bezobalu\n" +
                     "Nabersi s.r.o.\n" +

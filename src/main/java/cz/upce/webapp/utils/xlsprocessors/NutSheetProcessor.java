@@ -24,7 +24,7 @@ public class NutSheetProcessor extends AbstractSheetProcessor
     }
 
     @Override
-    public List<Item> disintegrateIntoItem(int rowIdx, List<String> rowData) {
+    public List<Item> disintegrateIntoItem(int rowNum, List<String> rowData) {
         if (!rowData.isEmpty())
         {
             String[] values = rowData.toArray(new String[0]);
