@@ -5,6 +5,7 @@ import org.hibernate.ejb.HibernateEntityManagerFactory;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.Date;
 import javax.persistence.*;
 
 /**
@@ -37,11 +38,14 @@ public class Supplier implements Serializable
     @Column
     private String pricelistName;
 
-    @Column(nullable = true)
+    @Column
     /**
      * Fixed cost of transport
      */
     public Double transportCost = 0D;
+
+    @Column
+    public Date lastImport;
 
     public Integer getId()
     {

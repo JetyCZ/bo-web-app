@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Date;
 import java.util.Map;
 import java.util.Objects;
 
@@ -117,6 +118,7 @@ public class ImportController
             }
             s.setPricelist(storedFile);
             s.setPricelistName(file.getOriginalFilename());
+            s.lastImport = new Date();
             supplierRepository.save(s);
 
             FileManipulator.deleteFile(file, UPLOADING_DIR);
